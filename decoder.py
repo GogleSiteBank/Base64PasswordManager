@@ -1,7 +1,13 @@
+from tkinter import filedialog
 import base64
 
-def decode():
-    encoded = input("Please enter the encoded string: ").encode("utf-8")
-    return base64.standard_b64decode(encoded).decode("utf-8")
+def main():
+    firstKey = input("Input first key: ")
+    secondKey = input("Input second key: ")
+    fileInput = filedialog.askopenfile()
+    content = str(fileInput.read())
+    firstDecode = content.split(firstKey)[1]
+    print("Output: %s"  % base64.b64decode(firstDecode.split(secondKey)[0].encode()).decode())
 
-print(decode())
+if __name__ == "__main__":
+    main()
